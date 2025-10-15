@@ -19,5 +19,9 @@ contract AILending is ILendingPool, Ownable, ReentrancyGuard {
     // State variables
     IERC20 public immutable asset;
     LendingPoolToken public immutable lpToken;
-    
+
+    uint256 public totalDeposits;
+    uint256 public totalBorrows;
+    uint256 public lastUpdateTimestamp;
+    uint256 public borrowIndex;
 }
