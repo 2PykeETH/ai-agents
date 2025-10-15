@@ -13,4 +13,15 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  * @notice A simple lending pool where users can deposit tokens to earn yield and borrow against collateral
  * @dev Implements a basic lending/borrowing mechanism with interest accrual
  */
-contract AILending {}
+contract AILending is ILendingPool, Ownable, ReentrancyGuard {
+    using SafeERC20 for IERC20;
+
+    // State variables
+    IERC20 public immutable asset;
+    LendingPoolToken public immutable lpToken;
+
+    uint256 public totalDeposits;
+    uint256 public totalBorrows;
+    uint256 public lastUpdateTimestamp;
+    uint256 public borrowIndex;
+}
