@@ -14,7 +14,7 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
  * @dev Implements a basic lending/borrowing mechanism with interest accrual
  */
 contract AILending is ILendingPool, Ownable, ReentrancyGuard {
-        using SafeERC20 for IERC20;
+    using SafeERC20 for IERC20;
 
     // State variables
     IERC20 public immutable asset;
