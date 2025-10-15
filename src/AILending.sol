@@ -16,4 +16,8 @@ import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 contract AILending is ILendingPool, Ownable, ReentrancyGuard {
         using SafeERC20 for IERC20;
 
+    // State variables
+    IERC20 public immutable asset;
+    LendingPoolToken public immutable lpToken;
+    
 }
