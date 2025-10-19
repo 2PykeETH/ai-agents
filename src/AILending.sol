@@ -25,21 +25,20 @@ contract AILending is ILendingPool, Ownable, ReentrancyGuard {
     uint256 public lastUpdateTimestamp;
     uint256 public borrowIndex;
 
-        // Interest rate model parameters (annual rates in basis points)
+    // Interest rate model parameters (annual rates in basis points)
     uint256 public constant BASE_RATE = 200; // 2%
     uint256 public constant SLOPE1 = 1000; // 10%
     uint256 public constant SLOPE2 = 5000; // 50%
     uint256 public constant OPTIMAL_UTILIZATION = 8000; // 80%
     uint256 public constant MAX_UTILIZATION = 9500; // 95%
-    
-        // Collateralization parameters
+
+    // Collateralization parameters
     uint256 public constant COLLATERAL_FACTOR = 7500; // 75% - max borrow vs collateral
     uint256 public constant LIQUIDATION_THRESHOLD = 8500; // 85% - liquidation threshold
     uint256 public constant LIQUIDATION_BONUS = 500; // 5% - liquidator bonus
-    
-        // Precision constants
+
+    // Precision constants
     uint256 public constant PRECISION = 1e18;
     uint256 public constant BASIS_POINTS = 10000;
     uint256 public constant SECONDS_PER_YEAR = 365 days;
-    
 }
