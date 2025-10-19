@@ -37,4 +37,9 @@ contract AILending is ILendingPool, Ownable, ReentrancyGuard {
     uint256 public constant LIQUIDATION_THRESHOLD = 8500; // 85% - liquidation threshold
     uint256 public constant LIQUIDATION_BONUS = 500; // 5% - liquidator bonus
     
+        // Precision constants
+    uint256 public constant PRECISION = 1e18;
+    uint256 public constant BASIS_POINTS = 10000;
+    uint256 public constant SECONDS_PER_YEAR = 365 days;
+    
 }
