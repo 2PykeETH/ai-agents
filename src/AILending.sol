@@ -50,4 +50,11 @@ contract AILending is ILendingPool, Ownable, ReentrancyGuard {
         uint256 borrowBalance;
         uint256 borrowIndex;
     }
+
+    constructor(address _asset, string memory _name, string memory _symbol) Ownable(msg.sender) {
+        asset = IERC20(_asset);
+        lpToken = new LendingPoolToken(_name, _symbol);
+        borrowIndex = PRECISION;
+        lastUpdateTimestamp = block.timestamp;
+    }
 }
