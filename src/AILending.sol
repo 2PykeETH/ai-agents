@@ -5,20 +5,20 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-//import "./interfaces/IAILending.sol";
-//import "./LendingPoolToken.sol";
+import "./interfaces/IAILending.sol";
+import "./AILendingToken.sol";
 
 /**
  * @title AILending
  * @notice A simple lending pool where users can deposit tokens to earn yield and borrow against collateral
  * @dev Implements a basic lending/borrowing mechanism with interest accrual
  */
-contract AILending is ILendingPool, Ownable, ReentrancyGuard {
+contract AILending is IAILending, Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     // State variables
     IERC20 public immutable asset;
-    LendingPoolToken public immutable lpToken;
+    AILendingToken public immutable lpToken;
 
     uint256 public totalDeposits;
     uint256 public totalBorrows;
@@ -41,4 +41,20 @@ contract AILending is ILendingPool, Ownable, ReentrancyGuard {
     uint256 public constant PRECISION = 1e18;
     uint256 public constant BASIS_POINTS = 10000;
     uint256 public constant SECONDS_PER_YEAR = 365 days;
+
+    // User data
+    mapping(address => UserInfo) public userInfo;
+
+    struct UserInfo {
+        uint256 collateralBalance;
+        uint256 borrowBalance;
+        uint256 borrowIndex;
+    }
+
+    constructor(address _asset, string memory _name, string memory _symbol) Ownable(msg.sender) {
+        asset = IERC20(_asset);
+        lpToken = new AILendingToken(_name, _symbol);
+        borrowIndex = PRECISION;
+        lastUpdateTimestamp = block.timestamp;
+    }
 }
