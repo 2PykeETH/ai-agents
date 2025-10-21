@@ -26,7 +26,7 @@ contract AILendingToken is ERC20, Ownable {
      * @param from Address to burn tokens from
      * @param amount Amount of tokens to burn
      */
-        function burn(address from, uint256 amount) external onlyOwner {
+    function burn(address from, uint256 amount) external onlyOwner {
         _burn(from, amount);
     }
 }
