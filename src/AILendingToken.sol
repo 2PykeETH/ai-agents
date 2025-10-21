@@ -20,4 +20,8 @@ contract AILendingToken is ERC20, Ownable {
     function mint(address to, uint256 amount) external onlyOwner {
         _mint(to, amount);
     }
+
+        function burn(address from, uint256 amount) external onlyOwner {
+        _burn(from, amount);
+    }
 }
