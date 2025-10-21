@@ -11,4 +11,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  */
 contract AILendingToken is ERC20, Ownable {
     constructor(string memory name, string memory symbol) ERC20(name, symbol) Ownable(msg.sender) {}
+
+    function mint(address to, uint256 amount) external onlyOwner {
+        _mint(to, amount);
+    }
 }
