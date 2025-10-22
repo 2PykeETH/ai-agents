@@ -13,4 +13,7 @@ interface IAILending {
         uint256 borrowBalance;
         uint256 borrowIndex;
     }
+
+    // Events
+    event Deposit(address indexed user, uint256 amount, uint256 lpTokens);
 }
