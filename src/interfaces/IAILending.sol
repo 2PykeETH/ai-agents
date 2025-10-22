@@ -2,7 +2,15 @@
 pragma solidity ^0.8.19;
 
 /**
- * @title ILendingPool
+ * @title IAILendingPool
  * @notice Interface for the lending pool contract
  */
-interface IAILending {}
+interface IAILending {
+    
+    // Structs
+    struct UserInfo {
+        uint256 collateralBalance;
+        uint256 borrowBalance;
+        uint256 borrowIndex;
+    }
+}
