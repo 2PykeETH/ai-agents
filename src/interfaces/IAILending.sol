@@ -19,5 +19,5 @@ interface IAILending {
     event Withdraw(address indexed user, uint256 amount, uint256 lpTokens);
         event DepositCollateral(address indexed user, uint256 amount);
             event WithdrawCollateral(address indexed user, uint256 amount);
-            
+                event Borrow(address indexed user, uint256 amount);
 }
