@@ -6,12 +6,6 @@ pragma solidity ^0.8.19;
  * @notice Interface for the lending pool contract
  */
 interface IAILending {
-    // Structs
-    struct UserInfo {
-        uint256 collateralBalance;
-        uint256 borrowBalance;
-        uint256 borrowIndex;
-    }
 
     // Events
     event Deposit(address indexed user, uint256 amount, uint256 lpTokens);
@@ -23,4 +17,7 @@ interface IAILending {
     event Liquidation(
         address indexed liquidator, address indexed borrower, uint256 collateralSeized, uint256 debtRepaid
     );
+
+    // Core functions
+    function deposit(uint256 amount) external;
 }
