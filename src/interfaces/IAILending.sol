@@ -25,5 +25,6 @@ interface IAILending {
     function withdrawCollateral(uint256 amount) external;
     function borrow(uint256 amount) external;
     function repay(uint256 amount) external;
+    function liquidate(address borrower, uint256 repayAmount) external;
 
 }
