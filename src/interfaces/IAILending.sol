@@ -29,5 +29,6 @@ interface IAILending {
     // View functions
     function getBorrowRate() external view returns (uint256);
         function getSupplyRate() external view returns (uint256);
+    function getTotalAssets() external view returns (uint256);
     
 }
