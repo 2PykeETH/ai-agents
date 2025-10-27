@@ -25,4 +25,8 @@ interface IAILending {
     function borrow(uint256 amount) external;
     function repay(uint256 amount) external;
     function liquidate(address borrower, uint256 repayAmount) external;
+
+    // View functions
+    function getBorrowRate() external view returns (uint256);
+    
 }
