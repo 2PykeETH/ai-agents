@@ -33,4 +33,9 @@ interface IAILending {
     function getUserBorrowBalance(address user) external view returns (uint256);
     function getHealthFactor(address user) external view returns (uint256);
     function getUtilizationRate() external view returns (uint256);
+
+    // State variables getters
+    function totalDeposits() external view returns (uint256);
+    function totalBorrows() external view returns (uint256);
+    function borrowIndex() external view returns (uint256);
 }
