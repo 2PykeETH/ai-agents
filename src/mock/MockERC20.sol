@@ -26,7 +26,7 @@ contract MockERC20 is ERC20 {
      * @notice Mints tokens to the caller (for testing)
      * @param amount Amount of tokens to mint
      */
-        function mint(uint256 amount) external {
+    function mint(uint256 amount) external {
         _mint(msg.sender, amount);
     }
 }
