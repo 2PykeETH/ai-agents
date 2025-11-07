@@ -58,6 +58,9 @@ contract AILending is IAILending, Ownable, ReentrancyGuard {
         lastUpdateTimestamp = block.timestamp;
     }
 
+    /**
+     * @notice Updates the borrow index based on accrued interest
+     */
         function updateBorrowIndex() public {
         uint256 timeDelta = block.timestamp - lastUpdateTimestamp;
         if (timeDelta == 0) return;
