@@ -71,6 +71,10 @@ contract AILending is IAILending, Ownable, ReentrancyGuard {
         lastUpdateTimestamp = block.timestamp;
     }
 
+    /**
+     * @notice Deposits assets into the pool and mints LP tokens
+     * @param amount Amount of assets to deposit
+     */
        function deposit(uint256 amount) external nonReentrant {
         require(amount > 0, "Amount must be greater than 0");
         updateBorrowIndex();
