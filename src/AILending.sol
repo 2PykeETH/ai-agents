@@ -97,31 +97,31 @@ contract AILending is IAILending, Ownable, ReentrancyGuard {
      * @notice Withdraws assets from the pool by burning LP tokens
      * @param lpTokenAmount Amount of LP tokens to burn
      */
-       function withdraw(uint256 lpTokenAmount) external nonReentrant {
+    function withdraw(uint256 lpTokenAmount) external nonReentrant {
         require(lpTokenAmount > 0, "Amount must be greater than 0");
         require(lpToken.balanceOf(msg.sender) >= lpTokenAmount, "Insufficient LP tokens");
         updateBorrowIndex();
-        
+
         uint256 assetsToWithdraw = (lpTokenAmount * getTotalAssets()) / lpToken.totalSupply();
         require(asset.balanceOf(address(this)) >= assetsToWithdraw, "Insufficient liquidity");
-        
+
         lpToken.burn(msg.sender, lpTokenAmount);
         totalDeposits -= assetsToWithdraw;
         asset.safeTransfer(msg.sender, assetsToWithdraw);
-        
+
         emit Withdraw(msg.sender, assetsToWithdraw, lpTokenAmount);
     }
 
-   /**
+    /**
      * @notice Deposits collateral to enable borrowing
      * @param amount Amount of collateral to deposit
      */
-        function depositCollateral(uint256 amount) external nonReentrant {
+    function depositCollateral(uint256 amount) external nonReentrant {
         require(amount > 0, "Amount must be greater than 0");
-        
+
         asset.safeTransferFrom(msg.sender, address(this), amount);
         userInfo[msg.sender].collateralBalance += amount;
-        
+
         emit DepositCollateral(msg.sender, amount);
     }
 }
