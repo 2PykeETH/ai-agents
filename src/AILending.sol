@@ -124,4 +124,22 @@ contract AILending is IAILending, Ownable, ReentrancyGuard {
 
         emit DepositCollateral(msg.sender, amount);
     }
+
+        function withdrawCollateral(uint256 amount) external nonReentrant {
+        require(amount > 0, "Amount must be greater than 0");
+        require(userInfo[msg.sender].collateralBalance >= amount, "Insufficient collateral");
+        updateBorrowIndex();
+        
+        UserInfo storage user = userInfo[msg.sender];
+        user.collateralBalance -= amount;
+        
+        // Check health factor after withdrawal
+        uint256 borrowBalance = getUserBorrowBalance(msg.sender);
+        if (borrowBalance > 0) {
+            require(getHealthFactor(msg.sender) >= PRECISION, "Health factor too low");
+        }
+        
+        asset.safeTransfer(msg.sender, amount);
+        emit WithdrawCollateral(msg.sender, amount);
+    }
 }
